@@ -93,7 +93,7 @@ do
 
   # openssl-1.1.1 tries to use an unguarded fork(), affecting AppleTVOS and WatchOS.
   # Luckily this is only present in the testing suite and can be built without it.
-  if [[ $PLATFORM == "AppleTV"* || $PLATFORM == "Watch"* ]]; then
+  if [[ $PLATFORM == "AppleTV"* || $PLATFORM == "AppleTVSimulator"* || $PLATFORM == "Watch"* ]]; then
     LOCAL_CONFIG_OPTIONS="${LOCAL_CONFIG_OPTIONS} no-tests"
   fi
 

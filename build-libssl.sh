@@ -25,7 +25,7 @@ set -u
 # SCRIPT DEFAULTS
 
 # Default version in case no version is specified
-DEFAULTVERSION="1.1.1q"
+DEFAULTVERSION="1.1.1s"
 
 # Default (=full) set of targets (OpenSSL >= 1.1.1) to build
 DEFAULTTARGETS=`cat <<TARGETS
@@ -33,7 +33,7 @@ ios-sim-cross-x86_64 ios-sim-cross-arm64 ios64-cross-arm64 ios64-cross-arm64e
 macos64-x86_64 macos64-arm64
 mac-catalyst-x86_64 mac-catalyst-arm64
 watchos-cross-armv7k watchos-cross-arm64_32 watchos-sim-cross-x86_64 watchos-sim-cross-i386 watchos-sim-cross-arm64
-tvos-sim-cross-x86_64 tvos64-cross-arm64
+tvos-sim-cross-x86_64 tvos-sim-cross-arm64 tvos64-cross-arm64
 TARGETS`
 
 # Minimum iOS/tvOS SDK version to build for
@@ -611,7 +611,7 @@ if [ ${#OPENSSLCONF_ALL[@]} -gt 1 ]; then
         DEFINE_CONDITION="TARGET_OS_WATCH && TARGET_OS_SIMULATOR && TARGET_CPU_X86"
       ;;
       *_tvos_arm64.h)
-        DEFINE_CONDITION="TARGET_OS_TV && TARGET_OS_EMBEDDED && TARGET_CPU_ARM64"
+        DEFINE_CONDITION="TARGET_OS_TV && (TARGET_OS_EMBEDDED || TARGET_OS_SIMULATOR) && TARGET_CPU_ARM64"
       ;;
       *_tvos_sim_x86_64.h)
         DEFINE_CONDITION="TARGET_OS_TV && TARGET_OS_SIMULATOR && TARGET_CPU_X86_64"
